@@ -40,7 +40,7 @@ DEBUG = (os_name == 'Windows')
 
 SECRET_KEY = env_key_value
 
-ALLOWED_HOSTS = ['localhost', 'certidrill.com', 'www.certidrill.com', '52.200.171.4', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -65,7 +65,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
 ]
 
 LOCALE_PATHS = [
@@ -173,12 +172,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-EMAIL_HOST = 'smtp.gmail.com'  # e.g., 'smtp.gmail.com'
-EMAIL_PORT = env_email_port  # e.g., 587
-EMAIL_USE_TLS = True  # or False if not using TLS
-EMAIL_HOST_USER = env_email_user # the email address used for sending emails
-EMAIL_HOST_PASSWORD = env_email_pass  # the password for the email address
 
 if os_name != "Windows":
     import warnings
