@@ -1,0 +1,938 @@
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'landing/widgets/head.html' %}
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJ2DP9CH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<!-- ======= Header ======= -->
+
+{% include 'landing/widgets/header.html' %}
+
+<!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>Learn Anything with AI</h1>
+          <h2 style="font-size:1.8em;">Pick any topic you're interested in, and let our AI models help you achieve mastery!</h2>
+          <div>
+            <a id="signup_hero" href="{% url 'register' %}" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="{% static 'assets_landing/img/illustrations/hero-img.svg' %}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row justify-content-between">
+          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+            <img style="max-height: 600px;" src="{% static 'assets_landing/img/illustrations/about-img.svg' %}" class="img-fluid" alt="" data-aos="zoom-in">
+          </div>
+          <div class="col-lg-6 pt-5 pt-lg-0">
+            <h3 data-aos="fade-up">What we do?</h3>
+            <p data-aos="fade-up" data-aos-delay="100">
+              At <b>Certidrill</b>, we understand the challenges you face in learning new things. That's why our platform is crafted to provide a <b>custom and interactive learning experience</b> in any subject you want.<br>
+              
+            Whether you're exploring IT, languages, art, history, or business, our carefully curated learning approach and <b>advanced AI models</b> guarantee to expedite your mastery, yielding significant progress in record time.
+            </p>
+            <div class="row">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <img style="max-height: 90px;" src="{% static 'assets_landing/img/illustrations/30.svg' %}" class="img-fluid animated" alt="">
+                <h4>Master anything</h4>
+                <p>We offer you a wide array of subjects that you can learn from scratch</p>
+              </div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <img style="max-height: 90px;" src="{% static 'assets_landing/img/illustrations/22.svg' %}" class="img-fluid animated" alt="">
+                <h4>Personalized Learning</h4>
+                <p>Our approach is tailored to your strengths and areas needing improvement</p>
+              </div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <img style="max-height: 90px;" src="{% static 'assets_landing/img/illustrations/31.gif' %}" class="img-fluid animated" alt="">
+                <h4>AI-powered</h4>
+                <p>Our robust AI models will guide you every step of the way to mastery</p>
+              </div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <img style="max-height: 90px;" src="{% static 'assets_landing/img/illustrations/23.svg' %}" class="img-fluid animated" alt="">
+                <h4>Continuous Growth</h4>
+                <p>We nurture improvement with insights and tools for ongoing development</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Our Approach</h2>
+      <p>Master anything in 3 steps</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/25.svg' %}" class="img-fluid animated" alt="">
+          <h4 class="title"><a href="">Summaries and lessons</a></h4>
+          <p class="description">Let our advanced AI models craft a custom summary for any topic you wish to learn. The generated content prepares you to progress in your learning journey and effectively tackle quiz questions</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/24.svg' %}" class="img-fluid animated" alt="">
+          <h4 class="title"><a href="">Custom quizzes</a></h4>
+          <p class="description">Use our AI-based quiz engine to generate custom questions in your chosen topics, ensuring a personalized learning experience for you and an efficient approach to mastering areas needing improvement</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/26.svg' %}" class="img-fluid animated" alt="">
+          <h4 class="title"><a href="">Review and improve</a></h4>
+          <p class="description">
+            Tailor your review section to cater to your learning needs and preferences. This feature allows you to curate the topics that you believe require further attention, enabling you to reinforce your understanding whenever necessary</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+
+
+
+<section id="features" class="features" data-aos="fade-up">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Features</h2>
+      <p>We are commited to help you grow</p>
+    </div>
+
+    <div class="row content">
+      <div class="col-md-5 text-center" data-aos="fade-right" data-aos-delay="100">
+        <img style="max-height: 200px;" src="{% static 'assets_landing/img/illustrations/28.svg' %}" class="img-fluid animated" alt="">
+      </div>
+      <div class="col-md-7 pt-4 center_for_mobile" data-aos="fade-left" data-aos-delay="100">
+        <h3>Track Your Progress</h3>
+        <p class="fst-italic">
+          After each quiz, dive into detailed analytics. Know your percentage score, review incorrect answers, and add them to your personal review section for focused improvement
+        </p>
+      </div>
+    </div>
+
+    <div class="row content">
+      <div class="col-md-5 text-center order-1 order-md-2" data-aos="fade-left">
+        <img style="max-height: 200px;" src="{% static 'assets_landing/img/illustrations/27.svg' %}" class="img-fluid animated" alt="">
+      </div>
+      <div class="col-md-7 pt-5 order-2 order-md-1 center_for_mobile" data-aos="fade-right">
+        <h3>Competitive Analysis</h3>
+        <p class="fst-italic">
+          Benchmark your performance against others who study the same subjects. Understand your position and get motivated to climb higher
+        </p>
+      </div>
+    </div>
+
+    <div class="row content">
+      <div class="col-md-5 text-center" data-aos="fade-right">
+        <img style="max-height: 200px;" src="{% static 'assets_landing/img/illustrations/29.svg' %}" class="img-fluid animated" alt="">
+      </div>
+      <div class="col-md-7 pt-5 center_for_mobile" data-aos="fade-left">
+        <h3>Insights for Growth</h3>
+        <p class="fst-italic">Receive personalized insights on areas for improvement. <b>Certidrill</b> is not just about learning and knowing; it's about evolving and mastering</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+ <!-- ======= Topics Section ======= -->
+ <section id="fields" class="clients section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Topics</h2>
+      <p>Key fields covered by Certidrill</p>
+    </div>
+
+    <div class="clients-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper align-items-center">
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/python.svg' %}" title="Python" class="img-fluid" alt="Python"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/aws.svg' %}" title="AWS" class="img-fluid" alt="AWS"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/sql.svg' %}" title="SQL" class="img-fluid" alt="SQL"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/javascript.svg' %}" title="Git" class="img-fluid" alt="Javascript"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/business.svg' %}" title="Business" class="img-fluid" alt="Business"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/math.svg' %}" title="Math" class="img-fluid" alt="Math"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/philosophy.svg' %}" title="Philosophy" class="img-fluid" alt="Philosophy"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/languages.svg' %}" title="Languages" class="img-fluid" alt="Languages"></div>
+        <div class="swiper-slide"><img src="{% static 'assets_landing/img/fields/science.svg' %}" title="Science" class="img-fluid" alt="Science"></div>
+
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Topics Section -->
+
+
+    <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2 style="color:#4e4039 !important; font-size:32px">Who Certidrill is Designed For?</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/32.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Lifelong Learners</h4>
+            <p class="description">Embrace a lifelong learning mindset, staying ahead of the curve with continuous self-improvement and exploration</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/26.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Students</h4>
+            <p class="description">We reinforce your classroom learning and prepare you for real-world challenges with a tailored approach</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/24.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Professionals</h4>
+            <p class="description">Stay ahead in your dynamic trade landscape by continually enhancing your skills and staying informed</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/29.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Certification Aspirants</h4>
+            <p class="description">We provide tailored support for professionals aiming to ace certifications and validate their expertise</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/25.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Job Seekers</h4>
+            <p class="description">We help you elevate your interview readiness and skillsets to stand out in the competitive IT job market</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="text-center mb-5">
+            <img style="max-height: 100px;" src="{% static 'assets_landing/img/illustrations/whom/27.svg' %}" class="img-fluid animated" alt="">
+            <h4 class="title">Career Changers</h4>
+            <p class="description">We support your smooth transition of career with targeted content ensuring relevant skill acquisition</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+    <!-- ======= Portfolio Section ======= -->
+    <!-- <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p>Check out our beautifull portfolio</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-1.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-3.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-5.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-6.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="{% static 'assets_landing/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'assets_landing/img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
+                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+              </div>
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+    
+    <!-- End Portfolio Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions</p>
+        </div>
+
+        <ul class="faq-list" data-aos="fade-up" data-aos-delay="100">
+
+          <li>
+            <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">What is Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                <b>Certidrill</b> is a revolutionary e-learning platform meticulously designed to help learners master new subjects and topics. Our user-tailored approach, coupled with AI-powered quizzes, summaries, and lessons, ensures personalized content to enhance skills and foster a sense of competence and proficiency in every learner's journey.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" class="collapsed question" href="#faq2">How does Certidrill personalize learning? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                <b>Certidrill</b> approach is tailored to your strengths and areas needing improvement. Our advanced AI models analyze your performance and preferences to provide customized summaries, lessons, and quizzes, ensuring an interactive and effective learning experience that caters to your individual needs.
+              </p>
+            </div>
+          </li>
+
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">What types of insights will I receive after using Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                <b>Certidrill</b> provides detailed insights into your performance, highlighting your strengths and areas for improvement. You'll receive feedback on the quizzes you take, competitive analysis compared to other users, and recommendations on how to enhance your skills further.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">How does AI power Certidrill's learning experience? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                <b>Certidrill</b> leverages robust AI models to guide you every step of the way to mastery. From crafting custom summaries and lessons to generating personalized quiz questions, our AI-powered platform accelerates your learning journey, making mastery achievable in record time.
+              </p>
+            </div>
+          </li>
+
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Can I create my own custom quizzes with specific topics and modules? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq6" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Absolutely! <b>Certidrill</b> empowers users to create custom quizzes tailored to their specific preferences. You can select the subjects and modules you want to focus on, and our engine will generate random questions in the chosen areas to suit your unique learning goals.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq7" class="collapsed question">Can I track my progress on Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq7" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Yes, <b>Certidrill</b> enables you to track your progress comprehensively. After each quiz, you can delve into detailed analytics, including your percentage score and review incorrect answers. Additionally, you can benchmark your performance against peers and receive personalized insights for growth.
+              </p>
+            </div>
+          </li>
+
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq8" class="collapsed question">Are there any prerequisites to using Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq8" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                No prerequisites are required. <b>Certidrill</b> is designed for users of all skill levels, from beginners to experienced professionals. Simply choose your preferred subjects, and our platform will tailor the content to your needs.
+              </p>
+            </div>
+          </li>
+
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq9" class="collapsed question">What subjects are available on Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq9" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                <b>Certidrill</b> offers a diverse range of subjects, including but not limited to IT, languages, art, history, and business. Explore our comprehensive library to find the topics that interest you most.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq10" class="collapsed question">Can I learn multiple subjects simultaneously on Certidrill? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq10" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Yes, <b>Certidrill</b> allows users to explore multiple subjects simultaneously. You can customize your learning experience by selecting the subjects that align with your interests and goals.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq11" class="collapsed question">Are the subjects on Certidrill taught by instructors or AI? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq11" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                The subjects on <b>Certidrill</b> are taught using a combination of AI-generated content and curated resources. Our AI-powered platform provides personalized summaries, lessons, and quizzes to facilitate learning, supplemented by additional resources where necessary.
+              </p>
+            </div>
+          </li>
+
+
+
+        </ul>
+
+      </div>
+    </section><!-- End F.A.Q Section -->
+
+    <!-- ======= Team Section ======= -->
+    <!-- <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Team</h2>
+          <p>Our team is always here to help</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="member">
+              <img src="{% static 'assets_landing/img/team/team-1.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Walter White</h4>
+                  <span>Chief Executive Officer</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="member">
+              <img src="{% static 'assets_landing/img/team/team-2.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Sarah Jhonson</h4>
+                  <span>Product Manager</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="member">
+              <img src="{% static 'assets_landing/img/team/team-3.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>William Anderson</h4>
+                  <span>CTO</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="member">
+              <img src="{% static 'assets_landing/img/team/team-4.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Amanda Jepson</h4>
+                  <span>Accountant</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+    <!-- End Team Section -->
+
+
+<!-- ======= Pricing Section ======= -->
+<section id="pricing" class="pricing">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Pricing</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2 col-md-12 mt-4 mt-md-0">
+
+      </div>
+      <div class="col-lg-4 col-md-12 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="box" style="border: 3px solid #366994;">
+          <h3>Free</h3>
+          <h4><sup>$</sup>0<span> / month</span></h4>
+          <ul style="margin-top:55px;">
+            <li>Up to 3 Subjects</li>
+            <li>Quizzes <b>(Up to 3 per day)</b></li>
+            <li>AI Prompts <b>(Up to 5 per day)</b></li>
+            <li class="na">Review Section</li>
+            <li class="na">Custom Quizzes</li>
+            <li class="na">Insights and Statistics</li>
+            <li class="na">Competitive Analysis</li>
+          </ul>
+          <div class="btn-wrap">
+            <a id="signup_free_plan" href="{% url 'register' %}" class="btn-buy">Subscribe</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+        <div class="box featured">
+          <h3 style="color:#ffdd5d">Premium <span style="font-size:1.3em !important;" class="mdi mdi-crown"></span></h3>
+          <h4><sup>$</sup>9.99<span> / month</span></h4>
+          <p style="position: absolute;
+          bottom: 392px;
+          margin: 0;
+          color: #fff0b7;
+          left: 0;
+          font-size:1.1em;
+          right: 0;">or $89 per year (save 25%)</p>
+          <ul style="margin-top:55px;">
+            <li><b style="color:#ffdd5d">Unlimited</b> Subjects</li>
+            <li>Quizzes <b style="color:#ffdd5d">(Unlimited)</b></li>
+            <li>AI Prompts <b style="color:#ffdd5d">(Unlimited)</b></li>
+            <li>Review Section</li>
+            <li>Custom Quizzes</li>
+            <li>Insights and Statistics</li>
+            <li>Competitive Analysis</li>
+          </ul>
+          <div class="btn-wrap">
+            <a id="signup_paid_plan" class="btn-buy btn-premium" style="background:#ffdd5d; color: #366994; cursor:pointer;">Subscribe</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-12 mt-4 mt-md-0">
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- End Pricing Section -->
+
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact Us</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Tangier, Morocco</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>contact@certidrill.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+212 696 279 077</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.9547782798927!2d-5.806692424360769!3d35.77648717255653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c7f2f8498526b%3A0xf767574939ca2fe2!2sThe%20Nations%20square!5e0!3m2!1sen!2sma!4v1700332162160!5m2!1sen!2sma" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+          <d-iv class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <form role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group col-md-6 mt-3 mt-md-0">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+              </div>
+              <div class="alert_contact_success">Your message has been received successfully. Anticipate hearing from us shortly.</div>
+              <div class="alert_contact_error">Please fill all required information</div>
+              <div class="text-center mb-5"><button id="send_contact_info" type="button">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  {% include 'landing/widgets/footer.html' %}
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  {% include 'landing/widgets/scripts.html' %}
+
+</body>
+
+</html>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+
+
+<script>
+
+  function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+          }
+      }
+      return false;
+  }
+
+  var link_id = getUrlParameter('link_id');
+
+  if(link_id != "")
+  {
+    data_dict = {
+            "function":"mark_prospect_visited",
+            "link_id": link_id,
+        }
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'ajax_calls' %}",
+        data: JSON.stringify(data_dict),
+        success: function(response) {
+        }
+    })
+
+  }
+
+  $(document).on('click', '#signup_paid_plan', function() {
+
+        data_dict = {
+                  "function":"save_click_paid",
+              }
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            url: "{% url 'ajax_calls' %}",
+            data: JSON.stringify(data_dict),
+            success: function(response) {
+              window.location.href = '/auth/register/'
+            }
+        })
+
+});
+
+
+$(document).on('click', '#send_contact_info', function() {
+  $(".alert_contact_success").hide()
+  $(".alert_contact_error").hide()
+  validate_form =vailidate_form_contact()
+  if (validate_form == "")
+  {
+  data_dict = {
+            "function":"send_contact_info",
+            "name": sanitizeInput($("#name").val()),
+            "email": sanitizeInput($("#email").val()),
+            "subject": sanitizeInput($("#subject").val()),
+            "message": sanitizeInput($("#message").val())
+        }
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            url: "{% url 'ajax_calls' %}",
+            data: JSON.stringify(data_dict),
+            success: function(response) {
+              $(".alert_contact_success").show("")
+            }
+        })
+      }else
+      {
+        $(".alert_contact_error").html(validate_form)
+        $(".alert_contact_error").show("")
+      }
+});
+
+function vailidate_form_contact()
+{
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return_error = ""
+  if ($("#email").val() == "" || $("#message").val() == "" || $("#subject").val() == "" || $("#name").val() == "")
+  {
+    return_error = "Please fill all required options"
+  }else if (!emailRegex.test($("#email").val())) {
+    return_error = "Please enter a valid email"
+  }
+  return return_error
+}
+
+
+function sanitizeInput(input) {
+  // Replace all characters that are not alphanumeric, underscore, or dot with an empty string
+  return input.replace(/[^\w. ]/g, '');
+}
+
+function getCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+ }
+
+</script>
+
+
+<style>
+
+.center_for_mobile
+{
+  text-align: left;
+}
+.btn-premium:hover
+{
+  background: #fbe696 !important;
+}
+@media only screen and (max-width: 767px) {
+      .center_for_mobile {
+        text-align: center;
+        padding-top:0 !important;
+        margin-bottom:30px;
+      }
+    }
+
+</style>

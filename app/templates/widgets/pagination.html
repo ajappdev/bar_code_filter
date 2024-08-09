@@ -1,0 +1,46 @@
+
+  
+   <nav aria-label="Page navigation example mt-3" style="margin-right: 10px;">
+      <ul class="pagination mt-3" style="float: right !important;">
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+        <a class="page-link prev prev-page-liste" href="#">Previous</a>
+      </li>
+    {% else %}
+        <li class="page-item disabled">
+        <a class="page-link prev prev-page-liste" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+      </li>
+    {% endif %}
+
+    {% if page_obj.number|add:'-4' > 1 %}
+        <li class="page-item"><a class="page-link" href="#">&hellip;</a></li>
+    {% endif %}
+
+    {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+            <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            {{ i }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+             <li class="page-item"><a class="page-link page_number_pagination" href="#">{{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+       <li class="page-item"><a class="page-link" href="#">&hellip;</a></li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+        <a class="page-link prev next-page-liste" href="#">Next</a>
+      </li>
+    {% else %}
+        <li class="page-item disabled">
+        <a class="page-link prev next-page-liste" href="#" tabindex="-1" aria-disabled="True">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

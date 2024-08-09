@@ -1,0 +1,56 @@
+{% load i18n %}
+{% load humanize %}
+<div class="card">
+<h5 class="card-header">{{length_result|intcomma }} {% trans "produits trouvés" %}</h5>
+<div class="table-responsive text-nowrap">
+<table class="table">
+    <thead class="table-light">
+      <tr>
+        <th>{% trans "Code-barres" %}</th>
+        <th>{% trans "Nom du produit" %}</th>
+        <th class="text-end"></th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for product in products %}
+            <tr>
+                <td class="hidden product_id">
+                    {{product.id|safe}}
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0" style="color:black; font-weight: 600;">{{product.barcode}}
+                            </p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0">{{product.name}}
+                            </p>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-end">
+                    <a class="link_product" type="button">
+                        <i class="mdi mdi-24px mdi-link"></i>
+                    </a>
+                    <a class="edit_product" type="button">
+                        <i class="mdi mdi-24px mdi-pen"></i>
+                    </a>
+                    <a class="delete_product" type="button">
+                        <i class="mdi mdi-24px mdi-trash-can"></i>
+                    </a>
+
+                </td>
+            </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+    {% if products.has_other_pages %}
+    {% include 'widgets/pagination.html' with page_obj=products  %}
+    {% endif %}

@@ -1,0 +1,89 @@
+{% load static%}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        {% include 'widgets/logo.html' with height='60' mt='4' %}
+
+
+      <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+        <i class="mdi menu-toggle-icon d-xl-block align-middle mdi-20px"></i>
+      </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1 mt-4">
+
+      {% if request.user.user_profile.role == "Administrator" %}
+
+
+      <li class="menu-item">
+        <a href="{% url 'products' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-package-variant"></i>
+          <div data-i18n="Basic">Produits</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'logout' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-logout"></i>
+          <div data-i18n="Basic">Se déconnecter</div>
+        </a>
+      </li>
+
+      {% elif request.user.user_profile.role == "Student" %}
+
+
+      <li class="menu-item">
+        <a href="{% url 'home' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-home"></i>
+          <div data-i18n="Basic">Home</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'subjects' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-bookshelf"></i>
+          <div data-i18n="Basic">Subjects</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'quizzes' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-help-box-multiple"></i>
+          <div data-i18n="Basic">My Quizzes</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'review_section' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-file-find"></i>
+          <div data-i18n="Basic">Review Section</div>
+        </a>
+      </li>
+      
+      <li class="menu-item">
+        <a href="{% url 'profile' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-account"></i>
+          <div data-i18n="Basic">Profile</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'billing' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-format-list-bulleted"></i>
+          <div data-i18n="Basic">Billing</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="{% url 'logout' %}" class="menu-link">
+          <i class="menu-icon tf-icons mdi mdi-logout"></i>
+          <div data-i18n="Basic">Logout</div>
+        </a>
+      </li>
+
+
+      {% endif %}
+
+    </ul>
+  </aside>

@@ -1,0 +1,160 @@
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+<footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <form action="" method="post" class="mb-3">
+              <input type="email" id="email_subscribe" name="email_subscribe"><input id="subscribe_button_confirm" type="button" value="Confirm">
+            </form>
+            <div class="alert_subscribe_success">Your email has been received successfully. Anticipate hearing from us shortly.</div>
+            <div class="alert_subscribe_error">Please enter a valid email</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Contact Us</h3>
+            <p>
+              Tangier, Morocco<br>
+              <strong>Phone:</strong> +212 696 279 077<br>
+              <strong>Email:</strong> contact@certidrill.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#features">Features</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Get started</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>About</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="{% url 'about' %}">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="{% url 'privacy_policy' %}">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="{% url 'cookies_policy' %}">Cookies policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target="_blank" href="{% url 'terms_and_conditions' %}">Terms and conditions</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <div class="social-links mt-3 mb-3">
+              <a target="_blank" href="https://x.com/certidrill" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a target="_blank" href="https://facebook.com/certidrill"><i class="bx bxl-facebook"></i></a>
+              <a target="_blank" href="https://instagram.com/certi_drill"><i class="bx bxl-instagram"></i></a>
+              <a target="_blank" href="https://linkedin.com/company/certidrill"><i class="bx bxl-linkedin"></i></a>
+            </div>
+            <a href="https://www.producthunt.com/posts/certidrill?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-certidrill" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=463722&theme=light" alt="Certidrill - Master&#0032;anything&#0032;with&#0032;AI | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        <b>Certidrill </b>©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        All Rights Reserved. Theme made by <a target="_blank" href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
+
+  {% include 'widgets/cookies-consent.html' %}
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script>
+
+
+$(document).on('click', '#subscribe_button_confirm', function() {
+  $(".alert_subscribe_success").hide()
+  $(".alert_subscribe_error").hide()
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test($("#email_subscribe").val())) {
+    $(".alert_subscribe_error").show()
+    }else
+    {
+      data_dict = {
+            "function":"send_contact_info",
+            "name": "subscriber",
+            "email": sanitizeInput($("#email_subscribe").val()),
+            "subject": "subscriber",
+            "message": "subscriber"
+        }
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            url: "{% url 'ajax_calls' %}",
+            data: JSON.stringify(data_dict),
+            success: function(response) {
+              $(".alert_subscribe_success").show("")
+            }
+        })
+    }
+
+
+});
+
+function vailidate_form_contact()
+{
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return_error = ""
+  if ($("#email").val() == "" || $("#message").val() == "" || $("#subject").val() == "" || $("#name").val() == "")
+  {
+    return_error = "Please fill all required options"
+  }else if (!emailRegex.test($("#email").val())) {
+    return_error = "Please enter a valid email"
+  }
+  return return_error
+}
+
+
+function sanitizeInput(input) {
+  // Replace all characters that are not alphanumeric, underscore, or dot with an empty string
+  return input.replace(/[^\w. ]/g, '');
+}
+
+function getCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+ }
+
+</script>

@@ -1,0 +1,502 @@
+{% load i18n %}
+{% load humanize %}
+
+
+<!-- Upload Area -->
+<div id="uploadArea2" class="upload-area card text-center">
+  <div class="card-body">
+  
+    <!-- Drop Zoon -->
+    <div id="dropZoon2" class="dropZoon dropZoon upload-area__drop-zoon drop-zoon">
+      <span class="drop-zoon__icon">
+        <i class='bx bxs-file-image'></i>
+      </span>
+      <p class="drop-zoon__paragraph">{% trans "Cliquer ici pour importer votre base de produits" %}</p>
+
+
+      <img src="" alt="Preview Image" id="previewImage2" class="drop-zoon__preview-image" draggable="false">
+      <input type="file" id="fileInput2" class="drop-zoon__file-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+    </div>
+    <!-- End Drop Zoon -->
+  
+    <!-- File Details -->
+    <div id="fileDetails2" class="upload-area__file-details file-details">
+      <div id="uploadedFile2" class="uploaded-file">
+        <div class="uploaded-file__icon-container">
+          <i class='bx bxs-file-blank uploaded-file__icon'></i>
+          <span class="uploaded-file__icon-text"></span> <!-- Data Will be Comes From Js -->
+        </div>
+  
+        <div id="uploadedFileInfo2" class="uploaded-file__info">
+        </div>
+      </div>
+    </div>
+
+    <h3 class="p0p8 mb-0 mt-3">Cliquez ci-dessous pour télécharger le modèle d'imporation</h3>
+    <p class="p0p8 mb-0"><a target="_blank" href="{% url 'download_excel_template' %}"><span class="mdi mdi-download"></span> Télécharger le modèle</a></p>
+
+    <!-- End File Details -->
+  </div>
+  </div>
+  <!-- End Upload Area -->
+
+
+
+
+<style>
+/* General Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+/* End General Styles */
+
+
+.dropZoon
+{
+    padding:20px;
+}
+
+.upload-area--open { /* Slid Down Animation */
+  animation: slidDown 500ms ease-in-out;
+}
+
+@keyframes slidDown {
+  from {
+    height: 28.125rem; /* 450px */
+  }
+
+  to {
+    height: 35rem; /* 560px */
+  }
+}
+
+#dropZoon2
+{
+  background: #6767cf;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.3em !important;
+}
+
+.upload-area__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.3125rem;
+}
+
+.upload-area__paragraph {
+  font-size: 0.8375rem;
+  color: var(--clr-light-gray);
+  margin-top: 0;
+  color: #7cc59b;
+  margin-top: 15px;
+
+}
+
+.upload-area__tooltip {
+  position: relative;
+  color: var(--clr-light-blue);
+  cursor: pointer;
+  transition: color 300ms ease-in-out;
+}
+
+.upload-area__tooltip:hover {
+  color: var(--clr-blue);
+}
+
+.upload-area__tooltip-data {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -125%);
+  min-width: max-content;
+  background-color: var(--clr-white);
+  color: var(--clr-blue);
+  border: 1px solid var(--clr-light-blue);
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: none 300ms ease-in-out;
+  transition-property: opacity, visibility;
+}
+
+.upload-area__tooltip:hover .upload-area__tooltip-data {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Drop Zoon */
+.upload-area__drop-zoon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px dashed var(--clr-light-blue);
+  border-radius: 15px;
+  margin-top: 2.1875rem;
+  cursor: pointer;
+  transition: border-color 300ms ease-in-out;
+}
+
+.upload-area__drop-zoon:hover {
+  border-color: var(--clr-blue);
+}
+
+.drop-zoon__icon {
+  display: flex;
+  font-size: 3.75rem;
+  color: var(--clr-blue);
+  transition: opacity 300ms ease-in-out;
+}
+
+.drop-zoon__paragraph {
+  font-size: 0.9375rem;
+  color: var(--clr-light-gray);
+  margin: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.drop-zoon:hover .drop-zoon__icon,
+.drop-zoon:hover .drop-zoon__paragraph {
+  opacity: 0.7;
+}
+
+.drop-zoon__loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  color: var(--clr-light-blue);
+  z-index: 10;
+}
+
+.drop-zoon__preview-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.3125rem;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  transition: opacity 300ms ease-in-out;
+}
+
+.drop-zoon:hover .drop-zoon__preview-image {
+  opacity: 0.8;
+}
+
+.drop-zoon__file-input {
+  display: none;
+}
+
+/* (drop-zoon--over) Modifier Class */
+.drop-zoon--over {
+  border-color: var(--clr-blue);
+}
+
+.drop-zoon--over .drop-zoon__icon,
+.drop-zoon--over .drop-zoon__paragraph {
+  opacity: 0.7;
+}
+
+/* (drop-zoon--over) Modifier Class */
+.drop-zoon--Uploaded {
+  
+}
+
+/* File Details Area */
+.upload-area__file-details {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;
+  transition: none 500ms ease-in-out;
+  transition-property: opacity, visibility;
+  transition-delay: 500ms;
+}
+
+/* (duploaded-file--open) Modifier Class */
+.file-details--open {
+  height: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+.file-details__title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--clr-light-gray);
+}
+
+/* Uploaded File */
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: none 500ms ease-in-out;
+  transition-property: visibility, opacity;
+}
+
+/* (duploaded-file--open) Modifier Class */
+.uploaded-file--open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.uploaded-file__icon-container {
+  position: relative;
+  margin-right: 0.3125rem;
+}
+
+.uploaded-file__icon {
+  font-size: 3.4375rem;
+  color: var(--clr-blue);
+}
+
+.uploaded-file__icon-text {
+  position: absolute;
+  top: 1.5625rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--clr-white);
+}
+
+.uploaded-file__info {
+  position: relative;
+  top: -0.3125rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.uploaded-file__info::before,
+.uploaded-file__info::after {
+  content: '';
+  position: absolute;
+  bottom: -0.9375rem;
+  width: 0;
+  height: 0.5rem;
+  background-color: #ebf2ff;
+  border-radius: 0.625rem;
+}
+
+.uploaded-file__info::before {
+  width: 100%;
+}
+
+.uploaded-file__info::after {
+  width: 100%;
+  background-color: var(--clr-blue);
+}
+
+/* Progress Animation */
+.uploaded-file__info--active::after {
+  animation: progressMove 800ms ease-in-out;
+  animation-delay: 300ms;
+}
+
+@keyframes progressMove {
+  from {
+    width: 0%;
+    background-color: transparent;
+  }
+
+  to {
+    width: 100%;
+    background-color: var(--clr-blue);
+  }
+}
+
+.uploaded-file__counter {
+  font-size: 1rem;
+  color: var(--clr-light-gray);
+}
+
+</style>
+
+
+
+
+<script>
+
+
+// Design By
+// - https://dribbble.com/shots/13992184-File-Uploader-Drag-Drop
+
+// Select Upload-Area
+const uploadArea2 = document.querySelector('#uploadArea2')
+
+// Select Drop-Zoon Area
+const dropZoon2 = document.querySelector('#dropZoon2');
+
+
+// Slect File Input 
+const fileInput2 = document.querySelector('#fileInput2');
+
+// Select Preview Image
+const previewImage2 = document.querySelector('#previewImage2');
+
+// File-Details Area
+const fileDetails2 = document.querySelector('#fileDetails2');
+
+// Uploaded File
+const uploadedFile2 = document.querySelector('#uploadedFile2');
+
+// Uploaded File Info
+const uploadedFileInfo2 = document.querySelector('#uploadedFileInfo2');
+
+// Uploaded File  Name
+
+// Images Types
+const imagesTypes2 = [
+  ".xlsx"
+];
+
+// When (drop-zoon) has (dragover) Event 
+dropZoon2.addEventListener('dragover', function (event) {
+  // Prevent Default Behavior 
+  event.preventDefault();
+
+  // Add Class (drop-zoon--over) On (drop-zoon)
+  dropZoon2.classList.add('drop-zoon--over');
+});
+
+// When (drop-zoon) has (dragleave) Event 
+dropZoon2.addEventListener('dragleave', function (event) {
+  // Remove Class (drop-zoon--over) from (drop-zoon)
+  dropZoon2.classList.remove('drop-zoon--over');
+});
+
+// When (drop-zoon) has (drop) Event 
+dropZoon2.addEventListener('drop', function (event) {
+  // Prevent Default Behavior 
+  event.preventDefault();
+
+  // Remove Class (drop-zoon--over) from (drop-zoon)
+  dropZoon2.classList.remove('drop-zoon--over');
+
+  // Select The Dropped File
+  file_to_upload = event.dataTransfer.files[0];
+
+  // Call Function uploadFile(), And Send To Her The Dropped File :)
+  uploadFile2(file_to_upload);
+});
+
+// When (drop-zoon) has (click) Event 
+dropZoon2.addEventListener('click', function (event) {
+  // Click The (fileInput2)
+  fileInput2.click();
+});
+
+// When (fileInput2) has (change) Event 
+fileInput2.addEventListener('change', function (event) {
+  // Select The Chosen File
+  file_to_upload = event.target.files[0];
+
+  // Call Function uploadFile(), And Send To Her The Chosen File :)
+  uploadFile2(file_to_upload);
+});
+
+// Upload File Function
+function uploadFile2(file_to_upload) {
+  // FileReader()
+  const fileReader = new FileReader();
+  // File Type 
+  const fileType = file_to_upload.type;
+  // File Size 
+  const fileSize = file_to_upload.size;
+
+  // If File Is Passed from the (File Validation) Function
+  if (fileValidate2(fileType, fileSize)) {
+    // Add Class (drop-zoon--Uploaded) on (drop-zoon)
+    $(".drop-zoon__paragraph").html(file_to_upload.name)
+    dropZoon2.classList.add('drop-zoon--Uploaded');
+
+    // Remove Class (uploaded-file--open) From (uploadedFile)
+    uploadedFile2.classList.remove('uploaded-file--open');
+    // Remove Class (uploaded-file__info--active) from (uploadedFileInfo2)
+    uploadedFileInfo2.classList.remove('uploaded-file__info--active');
+
+
+    // Read (file) As Data Url 
+    fileReader.readAsDataURL(file_to_upload);
+  } else { // Else
+
+    this; // (this) Represent The fileValidate(fileType, fileSize) Function
+
+  };
+  check_file_upload()
+};
+
+// Progress Counter Increase Function
+function progressMove() {
+  // Counter Start
+  let counter = 0;
+
+  // After 600ms 
+  setTimeout(() => {
+    // Every 100ms
+    let counterIncrease = setInterval(() => {
+      // If (counter) is equle 100 
+      if (counter === 100) {
+        // Stop (Counter Increase)
+        clearInterval(counterIncrease);
+      } else { // Else
+        // plus 10 on counter
+        counter = counter + 10;
+      }
+    }, 100);
+  }, 600);
+};
+
+
+id_card_uploaded = 0
+
+
+function hasExtension(inputID) {
+    var fileName = document.getElementById(inputID).value;
+    console.log(fileName.split('.')[1])
+    if (fileName.split('.')[1] == "xlsx"){
+            return 1
+        }
+    return 0
+}
+
+
+// Simple File Validate Function
+function fileValidate2(fileType, fileSize) {
+  // File Type Validation
+
+  // If The Uploaded File Is An Image
+  if (hasExtension('fileInput2') == 1)
+  {
+    // Check, If File Size Is 2MB or Less
+    if (fileSize <= 50000000) { // 20MB :)
+      id_card_uploaded = 1
+      return true;
+    } else { // Else File Size
+      id_card_uploaded = 0
+      return alert('Your file should be 50 megabytes or less');
+    };
+  } else { // Else File Type 
+
+    id_card_uploaded = 0
+    return alert('Please make sure to upload an .xlsx file');
+  };
+};
+
+// :)
+</script>

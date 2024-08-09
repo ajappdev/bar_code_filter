@@ -1,0 +1,193 @@
+
+{% load i18n %}
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-wide customizer-hide"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{% static 'md_template/assets/' %}"
+  data-template="vertical-menu-template-free">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Certidrill - Skills Perfected</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link href="{% static 'assets_landing/img/favicon.png' %}" rel="icon">
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/fonts/materialdesignicons.css' %}" />
+
+    <!-- Menu waves for no-customizer fix -->
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/libs/node-waves/node-waves.css' %}" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/css/core.css' %}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/css/theme-default.css' %}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{% static 'md_template/assets/css/demo.css' %}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/css/pages/page-auth.css' %}" />
+
+    <!-- Helpers -->
+    <script src="{% static 'md_template/assets/vendor/js/helpers.js' %}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static 'md_template/assets/js/config.js' %}"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-69EF09L4SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-69EF09L4SY');
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NJ2DP9CH');</script>
+  <!-- End Google Tag Manager -->
+  </head>
+
+  <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJ2DP9CH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Content -->
+
+    <div class="position-relative">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner py-4">
+          <!-- Login -->
+          <div class="card p-2">
+            <!-- Logo -->      
+            {% include 'widgets/logo.html' with height='80' mt='5' %}
+            <!-- /Logo -->
+
+            <div class="card-body mt-2">
+              <h4 class="mb-2">Bienvenue 👋</h4>
+              <p class="mb-4">Veuillez vous connecter à votre compte</p>
+
+                <form id="formAuthentication" class="mb-3" method="post" action="{% url 'login' %}">
+
+                  {% csrf_token %}
+                  <!-- Email input -->
+                  {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                      <strong>{% trans "Authentification échouée :" %}</strong> Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                      </button>
+                    </div>
+                  {% endif %}
+
+                <div class="form-floating form-floating-outline mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="id_username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autofocus />
+                  <label for="email">Username</label>
+                </div>
+                <div class="mb-3">
+                  <div class="form-password-toggle">
+                    <div class="input-group input-group-merge">
+                      <div class="form-floating form-floating-outline">
+                        <input
+                          type="password"
+                          id="id_password"
+                          class="form-control"
+                          name="password"
+                          placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                          aria-describedby="password" />
+                        <label for="password">Mot de passe</label>
+                      </div>
+                      <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100" type="submit">S'identifier</button>
+                  <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+
+
+              </form>
+
+            </div>
+          </div>
+          <!-- /Login -->
+          <img
+            src="{% static 'md_template/assets/img/illustrations/tree-3.png' %}"
+            alt="auth-tree"
+            class="authentication-image-object-left d-none d-lg-block" />
+          <img
+            src="{% static 'md_template/assets/img/illustrations/auth-basic-mask-light.png' %}"
+            class="authentication-image d-none d-lg-block"
+            alt="triangle-bg"
+            data-app-light-img="illustrations/auth-basic-mask-light.png"
+            data-app-dark-img="illustrations/auth-basic-mask-dark.png" />
+          <img
+            src="{% static 'md_template/assets/img/illustrations/tree.png' %}"
+            alt="auth-tree"
+            class="authentication-image-object-right d-none d-lg-block" />
+        </div>
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{% static 'md_template/assets/vendor/libs/jquery/jquery.js' %}"></script>
+    <script src="{% static 'md_template/assets/vendor/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'md_template/assets/vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'md_template/assets/vendor/libs/node-waves/node-waves.js' %}"></script>
+    <script src="{% static 'md_template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'md_template/assets/vendor/js/menu.js' %}"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{% static 'md_template/assets/js/main.js' %}"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>
+
+

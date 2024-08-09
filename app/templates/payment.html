@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block page_content %}
+
+
+    <div class="row" style="margin-top:100px;">
+        <div class="col-lg-3 col-md-12 col-sm-12">
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body mt-1 text-center">
+                    <h3><span class="mdi mdi-24px mdi-crown"></span> Upgrade to Premium</h3>
+                    {% include 'widgets/payment-widget.html' %}
+                </div>
+            </div>
+            <div style="text-align: center;" class="mt-3">
+                <a href="{% url 'landing_page' %}">Skip for now</a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+
+        </div>
+
+    </div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script>
+$("#layout-menu").remove()
+$(".layout-navbar").remove()
+$(".layout-page").attr('style', 'padding-left: 0px !important;');
+</script>
+
+{% endblock %}

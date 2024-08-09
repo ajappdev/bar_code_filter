@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{% load i18n %}
+{% load humanize %}
+
+<div class="container">
+    <div class="mb-3 d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-success" href="{% url 'bulk_upload_products' %}" type="button"><span class="mdi mdi-upload"></span> {% trans "Bulk Upload" %}</a>
+        <button class="btn btn-primary" id="add_product" type="button"><span class="mdi mdi-plus"></span> {% trans "Ajouter produit" %}</button>
+    </div>
+
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-header p-0 mb-3">{% trans 'Filtre' %}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-12 col-md-12 mb">
+                        <label style="color:#366994; font-weight:600;" class="form-label" for="filter_prodcut_barcode">Code-barres</label>
+                        <input class="form-control filter_input" type="text" id="filter_prodcut_barcode" name="filter_prodcut_barcode" placeholder="Filtrer par code barre du produit">
+                    </div>
+                    <div class="col-lg-8 col-12 col-md-12 mb-3">
+                        <label style="color:#366994; font-weight:600;" class="form-label" for="filter_product_name">Nom du produit</label>
+                        <input class="form-control filter_input" type="text" id="filter_product_name" name="filter_product_name" placeholder="Filtrer par nom du produit">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+    <div id="table_produits"></div>
+
+</div>
+
+
+<div class="modal fade show" id="modalCreateUpdateProduct" tabindex="-1" aria-modal="true" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content content_modalCreateUpdateProduct">
+        
+      </div>
+    </div>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script>
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+///////////////////WHEN DOM IS READY//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+$( document ).ready(function() {
+    
+    filter_results()
+
+});
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+/////////////////////////////AT LOAD//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+var filter_page = 1
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////CLICK EVENTS//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+$(document).on("click", "#save_product_form", function() {
+
+    product_name = $("#product_name").val()
+    product_barcode = $("#product_barcode").val()
+    product_link = $("#product_link").val()
+    product_id = $(".product_id_form").text()
+
+    var data_dict = {
+            "function":"create_update_product",
+            "product_name": product_name,
+            "product_barcode": product_barcode,
+            "product_link": product_link,
+            "product_id": product_id
+        }
+
+        $.ajax({
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                url: "{% url 'ajax_calls' %}",
+                data: JSON.stringify(data_dict),
+                success: function(response) {
+                    if (response['error'] != "")
+                    {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `{% trans "Une erreur est survenue!" %}`,
+                            position: 'center',
+                            showConfirmButton: true,
+                            confirmButtonText: "Ok",
+                            text: response['error'],
+                        })
+                    }else
+                    {
+                        Swal.fire({
+                        icon: 'success',
+                        title: '{% trans "Produti sauvegardé avec succès!" %}',
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                        $("#modalCreateUpdateProduct").modal('hide')
+                        filter_results()
+                    }
+                }
+        })
+});
+
+$(document).on("click", "#add_product", function() {
+
+    var data_dict = {
+            "function":"get_form_add_update_product",
+            "product_id": 0,
+        }
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'ajax_calls' %}",
+        data: JSON.stringify(data_dict),
+        success: function(response) {
+            $(".content_modalCreateUpdateProduct").html(response['html'])
+            $("#modalCreateUpdateProduct").modal('show')
+        }
+    })
+
+});
+
+
+
+$(document).on("click", ".link_product", function() {
+
+product_id = $(this).closest("tr").find(".product_id").text()
+var data_dict = {
+        "function":"get_link_product",
+        "product_id": product_id,
+    }
+
+$.ajax({
+    headers: {
+        "X-CSRFToken": getCookie("csrftoken")
+    },
+    type: 'POST',
+    processData: false,
+    contentType: false,
+    url: "{% url 'ajax_calls' %}",
+    data: JSON.stringify(data_dict),
+    success: function(response) {
+        Swal.fire({
+            html: `<div class="text-center"><p>Voici le lien du produit</p><input id="outputed_link" style="text-align:center;" class="form-control" value="`+response['link']+`"></div>`,
+            position: 'center',
+            confirmButtonColor: '#366994',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Visiter le lien',
+            cancelButtonText: 'Annuler',
+            allowOutsideClick: false
+        }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open($("#outputed_link").val(), '_blank');
+                }
+            })
+    }
+})
+
+});
+
+$(document).on("click", ".edit_product", function() {
+
+    product_id = $(this).closest("tr").find(".product_id").text()
+    var data_dict = {
+            "function":"get_form_add_update_product",
+            "product_id": product_id,
+        }
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'ajax_calls' %}",
+        data: JSON.stringify(data_dict),
+        success: function(response) {
+            $(".content_modalCreateUpdateProduct").html(response['html'])
+            $("#modalCreateUpdateProduct").modal('show')
+        }
+    })
+
+});
+
+$(document).on("click", ".delete_product", function() {
+
+    product_id = $(this).closest("tr").find(".product_id").text()
+    table_line = $(this).closest("tr")
+    Swal.fire({
+        title: `{% trans "Attention" %}`,
+        text: `{% trans "Voulez-vous vraiment supprimer ce produit ? Une fois supprimé, il sera définitivement retiré de la base de données." %}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#366994',
+        cancelButtonColor: '#838383',
+        confirmButtonText: `{% trans "Confirmer" %}`,
+        cancelButtonText: `{% trans "Annuler" %}`,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            data_dict = {
+            "function":"delete_product",
+            "product_id": product_id,
+            }
+            $.ajax({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            url: "{% url 'ajax_calls' %}",
+            data: JSON.stringify(data_dict),
+            success: function(response) {
+                if (response['error'] != "0")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `{% trans "An error has occurred!" %}`,
+                        position: 'center',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        text: response['error_text'],
+                    })
+                }else
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `{% trans "Produit supprimé avec succès" %}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    filter_results()
+                }
+            }
+            })
+
+        }
+    })
+
+});
+
+
+
+$(document).on("change", ".filter_input_change", function() {
+    filter_results()
+});
+
+$(document).on("keyup", ".filter_input", function() {
+    filter_results()
+});
+
+$(document).on('click', '.page-link', function() {
+	filter_page= $(this).text();
+    filter_results()
+});
+
+$(document).on('click', '.prev-page-liste', function() {
+	filter_page = parseInt(filter_page) - 1
+    filter_results();
+});
+
+$(document).on('click', '.next-page-liste', function() {
+	filter_page = parseInt(filter_page) + 1
+    filter_results();
+});
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+///////////////////DECLARING FUNCTIONS///////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+function filter_results()
+{
+
+    var data_dict = {
+        "function":"filter_products_list",
+        "product_name": $("#filter_product_name").val(),
+        "product_barcode": $("#filter_prodcut_barcode").val(),
+        "page": filter_page,
+    }
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'ajax_calls' %}",
+        data: JSON.stringify(data_dict),
+        success: function(response) {
+            $("#table_produits").html(response["html"])
+        }
+    })
+}
+
+</script>
+
+<style>
+
+.delete_product
+{
+    color: rgb(179, 31, 31) !important;
+}
+.edit_product
+{
+    color: #366994 !important;
+}
+.link_product
+{
+    color: rgb(0, 0, 0) !important;
+}
+
+</style>
+
+{% endblock %}

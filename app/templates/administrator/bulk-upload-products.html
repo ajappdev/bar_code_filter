@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block page_content %}
+
+
+<div class="container">
+
+    <div id="div_identity">
+    <div class="row">
+        <div class="col-lg-4 col-12 col-md-12">
+        </div>
+        <div class="col-lg-4 col-12 col-md-12">
+            <div id="upload-div h_100">
+                <div id="upload-passport">
+                    {% include 'administrator/widgets/upload-id.html' %}
+                </div>
+            </div>    
+        </div>
+        <div class="col-lg-4 col-12 col-md-12">
+        </div>
+        <div style="text-align:center;">
+            <button disabled id="upload_next" class="next_back_buttons btn btn-lg btn-success">{% trans "Envoyer" %}</button>
+        </div>
+    </div>
+    </div>
+    <div id="load_div" class="hidden" style="text-align:center;">
+        <img src="{% static 'assets/img/load.gif' %}">
+    </div>
+    <div class="hidden" style="max-height:500px; overflow-y: auto;" id="div_form">
+    
+    </div>
+
+
+    <div class="hidden" style="margin-top:20px;" id="action_div">
+    <div class="row">
+        <div class="col-lg-6 col-12 col-md-12">
+    
+        </div>
+    
+        <div style="text-align: right;" class="col-lg-6 col-12 col-md-12">
+            <a href="{% url 'bulk_upload_products' %}" class="btn btn-primary">{% trans 'Réessayer' %}</a>
+            <a href="{% url 'products' %}" class="btn btn-success">{% trans 'Retour' %}</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+<script>
+    
+var cus_id = 0
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+/////////////////////////////AT LOAD//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+
+var file_to_upload
+
+function check_file_upload()
+{
+    if (parseInt(id_card_uploaded) >= 1) 
+    {
+        $("#upload_next").attr("disabled", false)
+    }else
+    {
+        $("#upload_next").attr("disabled", true)
+    }
+}
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////CHANGE EVENTS//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////CLICK EVENTS//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+$(document).on("click", "#upload_next", function() {
+
+    if (parseInt(id_card_uploaded) >= 1) 
+    {
+
+    $("#div_form").hide("");
+    $("#div_identity").hide("");
+    $("#load_div").show("");
+    $("#action_div").hide("")
+    var form_data = new FormData();
+    form_data.append(0, file_to_upload);
+    form_data.append("key", makeid(50))
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'upload_products_file' %}",
+        data: form_data,
+        success: function(response) {
+
+            if (response['error'] == "")
+            {
+                $("#div_form").show("");
+                $("#div_identity").hide("");
+                $("#load_div").hide("");
+                $("#div_form").html(response['html']);
+                $("#action_div").show("")
+            }else
+            {
+                $("#div_identity").show("");
+                $("#load_div").hide("");
+                $("#div_form").html("");
+                $("#action_div").hide("");
+                $("#upload_next").attr("disabled", true)
+                Swal.fire({
+                    icon: 'error',
+                    title: translate_js('An error has occurred!', "EN"),
+                    text: response['error'],
+                    position: 'center',
+                    showConfirmButton: false,
+                })
+            }
+            $("#upload_next").attr("disabled", false)
+        }
+        
+    })
+    }
+
+});
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////FUNCTIONS/////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+</script>
+
+
+{% endblock %}

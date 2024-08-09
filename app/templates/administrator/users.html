@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{% load i18n %}
+{% load humanize %}
+
+<div class="container">
+    <div class="mb-3 d-grid gap-2 d-md-flex justify-content-md-end">
+      </div>
+
+      <div class="filter-row row mb-3 mt-5">
+          <div class="card card-filter">
+            <div class="card-body">
+                <h5 class="card-title p0p9">{% trans 'Filter' %}</h5>
+                <div class="row">
+                    <div class="col-lg-8 col-12 col-md-12 mb-3">
+                        <input id="filter_keyword_user" class="form-control filter_input" placeholder="{% trans 'Search per student name or login' %}">
+                    </div>
+                    <div class="col-lg-4 col-12 col-md-12 mb-3">
+                        <select id="filter_type_user" class="form-control filter_input_change">
+                            <option value="">{% trans 'Membership Type' %}</option>
+                            <option value="Free">{% trans 'Free' %}</option>
+                            <option value="Paid">{% trans 'Paid' %}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    
+    <div class="row mb-3">
+        <div id="table_users"></div>
+    </div>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script>
+
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+///////////////////WHEN DOM IS READY//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+$( document ).ready(function() {
+    
+    filter_results()
+
+    });
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+/////////////////////////////AT LOAD//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+var filter_page = 1
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////CLICK EVENTS//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+$(document).on("change", ".filter_input_change", function() {
+    filter_results()
+});
+
+$(document).on("keyup", ".filter_input", function() {
+    filter_results()
+});
+
+$(document).on('click', '.page-link', function() {
+	filter_page= $(this).text();
+    filter_results()
+});
+
+$(document).on('click', '.prev-page-liste', function() {
+	filter_page = parseInt(filter_page) - 1
+    filter_results();
+});
+
+$(document).on('click', '.next-page-liste', function() {
+	filter_page = parseInt(filter_page) + 1
+    filter_results();
+});
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////CHANGE EVENTS//////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+///////////////////DECLARING FUNCTIONS///////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+function filter_results()
+{
+
+    var data_dict = {
+        "function":"filter_users_list",
+        "user_keyword": $("#filter_keyword_user").val(),
+        "user_type": $("#filter_type_user").val(),
+        "page": filter_page,
+    }
+
+    $.ajax({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        url: "{% url 'ajax_calls' %}",
+        data: JSON.stringify(data_dict),
+        success: function(response) {
+            $("#table_users").html(response["html"])
+        }
+    })
+}
+
+</script>
+
+{% endblock %}

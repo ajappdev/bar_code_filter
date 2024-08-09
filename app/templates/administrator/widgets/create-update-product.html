@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modalCenterTitle">{{modal_title}}</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <span class="hidden product_id_form">{% if product.id > 0 %}{{product.id|safe}}{% else %}0{% endif %}</span>
+      <div class="col-lg-8 col-md-12 col-sm-12 mb-3">
+        <div class="form-floating form-floating-outline">
+          <input maxlength="200" type="text" id="product_name" class="form-control" {% if product.id > 0 %} value="{{product.name}}" {% endif %}>
+          <label for="product_name">Nom du produit</label>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
+        <div class="form-floating form-floating-outline">
+          <input type="text" id="product_barcode" class="form-control" {% if product.id > 0 %} value="{{product.barcode}}" {% endif %}>
+          <label for="product_barcode">Code barre</label>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+        <div class="form-floating form-floating-outline">
+          <textarea id="product_link" class="form-control">{% if product.id > 0 %}{{product.link}}{% endif %}</textarea>
+          <label for="product_link">Link</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Fermer</button>
+    <button type="button" id="save_product_form" class="btn btn-primary waves-effect waves-light">Sauvegarder</button>
+  </div>

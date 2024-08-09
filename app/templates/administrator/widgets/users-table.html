@@ -1,0 +1,47 @@
+{% load i18n %}
+{% load humanize %}
+<p class="text-muted">{{length_result|intcomma }} {% trans "students were found" %}</p>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>{% trans "User" %}</th>
+        <th>{% trans "Last login" %}</th>
+        <th class="text-end">{% trans "Membership" %}</th>
+        <th class="text-end">{% trans "Statut" %}</th>
+        <th class="text-end">{% trans "Quizzes" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for user in users %}
+            <tr>
+                <td class="hidden question_id">
+                    {{user.id|safe}}
+                </td>
+                <td>
+                <div class="d-flex align-items-center">
+                    <div class="ms-3">
+                    <p class="fw-bold mb-1">{{user.username}}
+                       <br>
+                    <span style="font-size:0.8em; color: grey; font-weight: 400;">Member since {{user.creation}}</span></p>
+                    </div>
+                </div>
+                </td>
+                <td>
+                    {{user.last_login}}
+                </td>
+                <td class="text-end">
+                  {{user.membership}}
+                </td>
+                <td class="text-end">
+                  {{user.membership}}
+                </td>
+                <td class="text-end">
+                    {{user.nb_quizzes}}
+                </td>
+            </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    {% if users.has_other_pages %}
+    {% include 'widgets/pagination.html' with page_obj=users  %}
+    {% endif %}

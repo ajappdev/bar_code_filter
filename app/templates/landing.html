@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block page_content %}
+
+<header>
+    <!-- Intro settings -->
+    <style>
+      /* Default height for small devices */
+      #intro-example {
+        height: 400px;
+      }
+  
+      /* Height for devices larger than 992px */
+      @media (min-width: 992px) {
+        #intro-example {
+          height: 600px;
+        }
+      }
+
+      .navbar
+      {
+        margin-bottom: 0 !important;
+      }
+    </style>
+
+    
+  
+    <!-- Background image -->
+    <div
+      id="intro-example"
+      class="p-5 text-center bg-image"
+      style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');"
+    >
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Quizzes</h1>
+            <h5 class="mb-4">Take interesting quizzes</h5>
+            <a
+              class="btn btn-outline-light btn-lg m-2"
+              href="{% url 'take_quiz' %}"
+              role="button"
+            >Take quiz</a
+            >
+            <a
+              class="btn btn-outline-light btn-lg m-2"
+              href="{% url 'register' %}"
+              role="button"
+            >Sign up</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
+  </header>
+
+{% endblock %}
