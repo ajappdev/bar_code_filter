@@ -24,29 +24,9 @@ try:
     DOTENV_FILE = os.path.join(BASE_DIR, '.envdev')
     env_config = Config(RepositoryEnv(DOTENV_FILE))
     env_key_value = env_config.get('SECRET_KEY')
-    env_database_name = env_config.get('POSTGRES_DB')
-    env_database_user = env_config.get('POSTGRES_USER')
-    env_database_password = env_config.get('POSTGRES_PASSWORD')
-    env_database_host = env_config.get('POSTGRES_HOST')
-    env_database_port = env_config.get('POSTGRES_PORT')
-    env_email_port = env_config.get('EMAIL_PORT')
-    env_email_user = env_config.get('EMAIL_USER')
-    env_email_pass = env_config.get('EMAIL_PASS')
-    google_client_id = env_config.get('CLIENT_ID')
-    google_client_secret = env_config.get('CLIENT_SECRET')
 except Exception as e:
     # Else then I'm on AWS and should look for environment Variables
     env_key_value = config('SECRET_KEY')
-    env_database_name = config('POSTGRES_DB')
-    env_database_user = config('POSTGRES_USER')
-    env_database_password = config('POSTGRES_PASSWORD')
-    env_database_host = config('POSTGRES_HOST')
-    env_database_port = config('POSTGRES_PORT')
-    env_email_port = config('EMAIL_PORT')
-    env_email_user = config('EMAIL_USER')
-    env_email_pass = config('EMAIL_PASS')
-    google_client_id = config('CLIENT_ID')
-    google_client_secret = config('CLIENT_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
     
