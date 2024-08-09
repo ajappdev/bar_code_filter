@@ -34,7 +34,7 @@ def search_product(request):
                 user=request.user, time=datetime.now())
             return redirect("administrator/products/")
 
-    page_title = "Certidrill - Learn Anything with AI"
+    page_title = "Rechercher produit"
     template = "search.html"
     context = {"page_title": page_title}
 
@@ -42,7 +42,7 @@ def search_product(request):
 
 
 def about(request):
-    page_title = "About - Certidrill"
+    page_title = "About"
     template = "landing/about.html"
     context = {"page_title": page_title}
     return render(request, template, context)
@@ -50,7 +50,7 @@ def about(request):
 
 def privacy_policy(request):
 
-    page_title = "Privacy policy - Certidrill"
+    page_title = "Privacy policy"
     template = "landing/privacy-policy.html"
     context = {"page_title": page_title,}
     return render(request, template, context)
@@ -58,7 +58,7 @@ def privacy_policy(request):
 
 def terms_and_conditions(request):
 
-    page_title = "Terms and conditions - Certidrill"
+    page_title = "Terms and conditions"
     template = "landing/terms-and-conditions.html"
     context = {"page_title": page_title,}
     return render(request, template, context)
@@ -66,7 +66,7 @@ def terms_and_conditions(request):
 
 def cookies_policy(request):
 
-    page_title = "Cookies policy - Certidrill"
+    page_title = "Cookies policy"
     template = "landing/cookies-policy.html"
     context = {"page_title": page_title,}
     return render(request, template, context)

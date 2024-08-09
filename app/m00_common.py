@@ -17,7 +17,7 @@ os_name = platform.system()
 if os_name == 'Windows':
     BASE_APP_URL = "http://localhost:8000"
 else:
-    BASE_APP_URL = "https://www.certidrill.com"
+    BASE_APP_URL = "hhttps://productmanuals.online"
 
 DATE_SHORT_LOCAL_WITH_DASH: str = '%Y-%m-%d'
 SCORE_SIMILARITY = 0.85
@@ -81,9 +81,8 @@ CURRENT_PLANS = [
     BASE_PREMIUM_PLAN,
     BASE_PREMIUM_PLAN_ANNUAL]
 
-PRODUCT_NAME = 'Certidrill'
+PRODUCT_NAME = 'ProductManuals'
 
-FROM_EMAIL = 'contact@certidrill.com'
 BBC_LIST = ['alae1ajbar@gmail.com', 'ibnouratib.pro@gmail.com']
 
 def is_hyperlink(s):
