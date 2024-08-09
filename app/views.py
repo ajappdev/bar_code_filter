@@ -26,13 +26,6 @@ import app.decorators as ad
 
 
 def search_product(request):
-    if request.user.id:
-        if request.user.user_profile.role == "Administrator":
-            am.UserProfile.objects.filter(user=request.user).update(
-                last_login=datetime.now())
-            am.LogingLog.objects.create(
-                user=request.user, time=datetime.now())
-            return redirect("administrator/products/")
 
     page_title = "Rechercher produit"
     template = "search.html"
