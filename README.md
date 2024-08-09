@@ -1,4 +1,4 @@
-# Product Management Web Application
+# Product Manual Management Web Application
 
 ## Overview
 
