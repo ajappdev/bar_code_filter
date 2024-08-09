@@ -40,7 +40,7 @@ DEBUG = (os_name == 'Windows')
 
 SECRET_KEY = env_key_value
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '34.207.179.237']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '34.207.179.237', 'productmanuals.online', 'www.productmanuals.online']
 
 # Application definition
 
