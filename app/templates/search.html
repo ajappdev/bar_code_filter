@@ -9,9 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chercher un produit</title>
     <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/css/core.css' %}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/css/theme-default.css' %}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{% static 'md_template/assets/css/demo.css' %}" />
     <!-- Material Design Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'md_template/assets/vendor/fonts/materialdesignicons.css' %}" />
     <style>
         body {
             background: linear-gradient(135deg, #dce9ff, #ddddde);/* Gradient background */
@@ -51,6 +54,7 @@
         .search-input input {
             border-radius: 50px;
             padding: 1rem 2.5rem;
+            padding-left:50px !important;
             font-size: 1.2rem;
             height: 73px;
             border: 1px solid #64b5f6;
@@ -59,7 +63,6 @@
         }
         .search-input input:focus {
             border-color: #42a5f5; /* Blue border on focus */
-            outline: none;
             box-shadow: 0 0 10px rgba(33, 150, 243, 0.5); /* Glow effect on focus */
         }
         .search-input input::placeholder {
@@ -103,7 +106,7 @@
     <div class="search-input">
         <input maxlength="100" type="text" id="barcode_field" class="form-control" placeholder="Code-barres">
         <button class="btn" id="search-barcode">
-            <i class="material-icons">search</i>
+            <span class="mdi mdi-magnify mdi-48px"></span>
         </button>
     </div>
     <div class="search-result">
@@ -112,9 +115,8 @@
 </div>
 
 <!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'md_template/assets/vendor/libs/popper/popper.js' %}"></script>
+<script src="{% static 'md_template/assets/vendor/js/bootstrap.js' %}"></script>
 
 </body>
 </html>
