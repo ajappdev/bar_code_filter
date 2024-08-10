@@ -138,8 +138,6 @@ $(document).on("click", "#search-barcode", function() {
             <span class="visually-hidden"></span>
             </div>`)
 
-        setTimeout(function() {
-
         var data_dict = {
                 "function":"search_barcode",
                 "barcode": sanitizeInput($("#barcode_field").val()),
@@ -167,7 +165,6 @@ $(document).on("click", "#search-barcode", function() {
                         }
                     }
             })
-        }, 1000);
     }
 });
 
