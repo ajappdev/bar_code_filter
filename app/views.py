@@ -154,8 +154,6 @@ def products(request):
     
     return render(request, template, context)
 
-
-@csrf_exempt
 def ajax_calls(request):
 
     if request.method == 'POST':
